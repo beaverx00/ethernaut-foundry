@@ -6,8 +6,6 @@ import {Ethernaut} from "src/Ethernaut.sol";
 import {Statistics} from "src/metrics/Statistics.sol";
 import {FallbackFactory} from "src/levels/FallbackFactory.sol";
 
-// import {Fallback} from "src/levels/Fallback.sol";
-
 interface IFallback {
     function contribute() external payable;
 
@@ -20,11 +18,9 @@ contract FallbackTest is Test {
     address public immutable PLAYER = makeAddr("PLAYER");
 
     function setUp() public {
-        Statistics statistics;
-
         // Deploy ethernaut contract
+        Statistics statistics = new Statistics();
         ethernaut = new Ethernaut();
-        statistics = new Statistics();
         statistics.initialize(address(ethernaut));
         ethernaut.setStatistics(address(statistics));
 
