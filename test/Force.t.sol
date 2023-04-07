@@ -27,6 +27,9 @@ contract ForceTest is Test {
         vm.startPrank(player);
 
         ForceAttack forceAttack = new ForceAttack{value: 42}(target);
+
+        // selfdestruct transfers all balances to designated address
+        // Not revert regardless of whether that address has receive/payable function
         forceAttack.pwn();
 
         // ----------------------------------
