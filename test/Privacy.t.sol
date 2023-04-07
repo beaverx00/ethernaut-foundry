@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import {PrivacyFactory} from "src/levels/PrivacyFactory.sol";
 
 interface IPrivacy {
-    function unlock(bytes16 _password) external;
+    function unlock(bytes16 _key) external;
 }
 
 contract PrivacyTest is Test {
