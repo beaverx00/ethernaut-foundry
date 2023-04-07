@@ -2,8 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
-import {Ethernaut} from "src/Ethernaut.sol";
-import {Statistics} from "src/metrics/Statistics.sol";
 import {FalloutFactory} from "src/levels/FalloutFactory.sol";
 
 interface IFallout {
@@ -11,44 +9,25 @@ interface IFallout {
 }
 
 contract FalloutTest is Test {
-    Ethernaut public ethernaut;
+    // Ethernaut public ethernaut;
     FalloutFactory public level;
+    IFallout public target;
+    address public player;
 
     function setUp() public {
         // ----------------------------------
-        // Deploy Ethernaut contract
-        // ----------------------------------
-        Statistics statistics = new Statistics();
-        ethernaut = new Ethernaut();
-        statistics.initialize(address(ethernaut));
-        ethernaut.setStatistics(address(statistics));
-
-        // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new FalloutFactory();
-        ethernaut.registerLevel(level);
+        player = makeAddr("PLAYER");
+        target = IFallout(level.createInstance(player));
     }
 
     function test_Fallout() public {
-        address PLAYER = makeAddr("PLAYER");
-        IFallout target;
-
-        vm.startPrank(PLAYER);
-        vm.recordLogs();
-
-        // ----------------------------------
-        // Create level instance
-        // ----------------------------------
-        ethernaut.createLevelInstance(level);
-        Vm.Log[] memory entries = vm.getRecordedLogs();
-        target = IFallout(
-            payable(address(uint160(uint256(entries[0].topics[2]))))
-        );
-
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
+        vm.prank(player);
 
         // There's a typo in constructor function, anyone can call that function
         target.Fal1out();
@@ -56,8 +35,7 @@ contract FalloutTest is Test {
         // ----------------------------------
         // Validate
         // ----------------------------------
-        ethernaut.submitLevelInstance(payable(address(target)));
-        entries = vm.getRecordedLogs();
-        assertEq(entries.length, 2);
+        bool success = level.validateInstance(payable(address(target)), player);
+        assertEq(success, true);
     }
 }

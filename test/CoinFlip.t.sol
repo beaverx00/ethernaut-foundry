@@ -2,48 +2,28 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
-import {Ethernaut} from "src/Ethernaut.sol";
-import {Statistics} from "src/metrics/Statistics.sol";
 import {CoinFlipFactory} from "src/levels/CoinFlipFactory.sol";
 import {CoinFlipAttack} from "src/attacks/CoinFlipAttack.sol";
 
 contract CoinFlipTest is Test {
-    Ethernaut public ethernaut;
     CoinFlipFactory public level;
+    address public target;
+    address public player;
 
     function setUp() public {
         // ----------------------------------
-        // Deploy ethernaut contract
-        // ----------------------------------
-        Statistics statistics = new Statistics();
-        ethernaut = new Ethernaut();
-        statistics.initialize(address(ethernaut));
-        ethernaut.setStatistics(address(statistics));
-
-        // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new CoinFlipFactory();
-        ethernaut.registerLevel(level);
+        player = makeAddr("PLAYER");
+        target = level.createInstance(player);
     }
 
     function test_CoinFlip() public {
-        address PLAYER = makeAddr("PLAYER");
-        address target;
-
-        vm.startPrank(PLAYER);
-        vm.recordLogs();
-
-        // ----------------------------------
-        // Create level instance
-        // ----------------------------------
-        ethernaut.createLevelInstance(level);
-        Vm.Log[] memory entries = vm.getRecordedLogs();
-        target = payable(address(uint160(uint256(entries[0].topics[2]))));
-
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
+        vm.startPrank(player);
         vm.roll(1_000_000);
         CoinFlipAttack coinFlipAttack = new CoinFlipAttack(target);
 
@@ -51,12 +31,12 @@ contract CoinFlipTest is Test {
             vm.roll(block.number + 42);
             coinFlipAttack.pwn();
         }
+        vm.stopPrank();
 
         // ----------------------------------
         // Validate
         // ----------------------------------
-        ethernaut.submitLevelInstance(payable(address(target)));
-        entries = vm.getRecordedLogs();
-        assertEq(entries.length, 2);
+        bool success = level.validateInstance(payable(address(target)), player);
+        assertEq(success, true);
     }
 }
