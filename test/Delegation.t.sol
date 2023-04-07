@@ -32,7 +32,7 @@ contract DelegationTest is Test {
         // ----------------------------------
         // Validate
         // ----------------------------------
-        bool success = level.validateInstance(payable(address(target)), player);
+        bool success = level.validateInstance(payable(target), player);
         assertEq(success, true);
     }
 }
