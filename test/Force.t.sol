@@ -12,7 +12,7 @@ contract ForceTest is Test {
 
     function setUp() public {
         // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new ForceFactory();
         player = makeAddr("PLAYER");

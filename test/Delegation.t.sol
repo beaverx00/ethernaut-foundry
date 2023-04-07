@@ -11,7 +11,7 @@ contract DelegationTest is Test {
 
     function setUp() public {
         // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new DelegationFactory();
         player = makeAddr("PLAYER");
