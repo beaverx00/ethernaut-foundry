@@ -15,7 +15,7 @@ contract VaultTest is Test {
 
     function setUp() public {
         // ----------------------------------
-        // Register level
+        // Create level instance
         // ----------------------------------
         level = new VaultFactory();
         player = makeAddr("PLAYER");
