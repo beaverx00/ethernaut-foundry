@@ -12,12 +12,11 @@ interface IFallout {
 
 contract FalloutTest is Test {
     Ethernaut public ethernaut;
-    FalloutFactory public falloutFactory;
-    address public immutable PLAYER = makeAddr("PLAYER");
+    FalloutFactory public level;
 
     function setUp() public {
         // ----------------------------------
-        // Deploy ethernaut contract
+        // Deploy Ethernaut contract
         // ----------------------------------
         Statistics statistics = new Statistics();
         ethernaut = new Ethernaut();
@@ -27,11 +26,12 @@ contract FalloutTest is Test {
         // ----------------------------------
         // Register level
         // ----------------------------------
-        falloutFactory = new FalloutFactory();
-        ethernaut.registerLevel(falloutFactory);
+        level = new FalloutFactory();
+        ethernaut.registerLevel(level);
     }
 
     function test_Fallout() public {
+        address PLAYER = makeAddr("PLAYER");
         IFallout target;
 
         vm.startPrank(PLAYER);
@@ -40,7 +40,7 @@ contract FalloutTest is Test {
         // ----------------------------------
         // Create level instance
         // ----------------------------------
-        ethernaut.createLevelInstance(falloutFactory);
+        ethernaut.createLevelInstance(level);
         Vm.Log[] memory entries = vm.getRecordedLogs();
         target = IFallout(
             payable(address(uint160(uint256(entries[0].topics[2]))))
@@ -49,7 +49,6 @@ contract FalloutTest is Test {
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
-        vm.deal(PLAYER, 1 ether);
 
         // There's a typo in constructor function, anyone can call that function
         target.Fal1out();

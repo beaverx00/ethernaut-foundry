@@ -14,8 +14,7 @@ interface IFallback {
 
 contract FallbackTest is Test {
     Ethernaut public ethernaut;
-    FallbackFactory public fallbackFactory;
-    address public immutable PLAYER = makeAddr("PLAYER");
+    FallbackFactory public level;
 
     function setUp() public {
         // ----------------------------------
@@ -29,11 +28,12 @@ contract FallbackTest is Test {
         // ----------------------------------
         // Register level
         // ----------------------------------
-        fallbackFactory = new FallbackFactory();
-        ethernaut.registerLevel(fallbackFactory);
+        level = new FallbackFactory();
+        ethernaut.registerLevel(level);
     }
 
     function test_Fallback() public {
+        address PLAYER = makeAddr("PLAYER");
         IFallback target;
 
         vm.startPrank(PLAYER);
@@ -42,7 +42,7 @@ contract FallbackTest is Test {
         // ----------------------------------
         // Create level instance
         // ----------------------------------
-        ethernaut.createLevelInstance(fallbackFactory);
+        ethernaut.createLevelInstance(level);
         Vm.Log[] memory entries = vm.getRecordedLogs();
         target = IFallback(
             payable(address(uint160(uint256(entries[0].topics[2]))))
