@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import {Ethernaut} from "src/Ethernaut.sol";
 import {Statistics} from "src/metrics/Statistics.sol";
 import {CoinFlipFactory} from "src/levels/CoinFlipFactory.sol";
-import {CoinFlipper} from "src/attacks/CoinFlipper.sol";
+import {CoinFlipAttack} from "src/attacks/CoinFlipAttack.sol";
 
 contract CoinFlipTest is Test {
     Ethernaut public ethernaut;
@@ -45,11 +45,11 @@ contract CoinFlipTest is Test {
         // Initiate attack
         // ----------------------------------
         vm.roll(1_000_000);
-        CoinFlipper coinFlipper = new CoinFlipper(target);
+        CoinFlipAttack coinFlipAttack = new CoinFlipAttack(target);
 
         for (uint256 i; i < 10; ++i) {
             vm.roll(block.number + 42);
-            coinFlipper.catchFlip();
+            coinFlipAttack.pwn();
         }
 
         // ----------------------------------
