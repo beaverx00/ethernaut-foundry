@@ -24,13 +24,13 @@ contract FallbackTest is Test {
         target = IFallback(level.createInstance(player));
 
         vm.deal(address(target), 1000 ether);
-        vm.deal(player, 1 ether);
     }
 
     function test_Fallback() public {
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
+        vm.deal(player, 1 ether);
         vm.startPrank(player);
 
         target.contribute{value: 1}();
