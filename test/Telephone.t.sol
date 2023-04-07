@@ -23,7 +23,7 @@ contract TelephoneTest is Test {
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
-        vm.startPrank(player);
+        vm.startPrank(player, player);
 
         TelephoneAttack telephoneAttack = new TelephoneAttack(target);
         telephoneAttack.pwn();
