@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 import "forge-std/Test.sol";
 import {MotorbikeFactory} from "src/levels/MotorbikeFactory.sol";
-import {Killer, MotorbikeAttack} from "src/attacks/MotorbikeAttack.sol";
+import {MotorbikeAttack} from "src/attacks/MotorbikeAttack.sol";
 
 contract MotorbikeTest is Test {
     MotorbikeFactory level;
@@ -24,6 +24,8 @@ contract MotorbikeTest is Test {
         // ----------------------------------
         // Initiate attack
         // ----------------------------------
+        vm.startPrank(player);
+
         bytes32 engineSlot = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
         address engineAddr = address(
             uint160(uint256(vm.load(target, engineSlot)))
@@ -32,10 +34,8 @@ contract MotorbikeTest is Test {
         // For validation: after attack, engine's balance should be zero
         vm.deal(engineAddr, 10 ether);
 
-        vm.startPrank(player);
-
-        address killer = address(new Killer());
-        new MotorbikeAttack(engineAddr, killer);
+        MotorbikeAttack motorbikeAttack = new MotorbikeAttack(engineAddr);
+        motorbikeAttack.pwn();
 
         vm.stopPrank();
 

