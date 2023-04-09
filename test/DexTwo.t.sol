@@ -16,8 +16,6 @@ interface IDexTwo {
         uint256 amount
     ) external;
 
-    // function approve(address spender, uint256 amount) external;
-
     function balanceOf(address token, address account)
         external
         view
