@@ -6,9 +6,9 @@ import {CoinFlipFactory} from "src/levels/CoinFlipFactory.sol";
 import {CoinFlipAttack} from "src/attacks/CoinFlipAttack.sol";
 
 contract CoinFlipTest is Test {
-    CoinFlipFactory public level;
-    address public target;
-    address public player;
+    CoinFlipFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

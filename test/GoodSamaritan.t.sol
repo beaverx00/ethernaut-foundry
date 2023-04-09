@@ -10,9 +10,9 @@ interface IGoodSamaritan {
 }
 
 contract GoodSamaritanTest is Test {
-    GoodSamaritanFactory public level;
-    address public target;
-    address public player;
+    GoodSamaritanFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

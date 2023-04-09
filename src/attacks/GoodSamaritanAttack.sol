@@ -6,7 +6,7 @@ interface IGoodSamaritan {
 }
 
 contract GoodSamaritanAttack {
-    IGoodSamaritan public target;
+    IGoodSamaritan target;
 
     error NotEnoughBalance();
 

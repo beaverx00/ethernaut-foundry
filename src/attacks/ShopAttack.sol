@@ -10,7 +10,7 @@ interface IShop {
 }
 
 contract ShopAttack {
-    IShop public target;
+    IShop target;
 
     constructor(address _target) {
         target = IShop(_target);

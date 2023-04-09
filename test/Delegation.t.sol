@@ -5,9 +5,9 @@ import "forge-std/Test.sol";
 import {DelegationFactory} from "src/levels/DelegationFactory.sol";
 
 contract DelegationTest is Test {
-    DelegationFactory public level;
-    address public target;
-    address public player;
+    DelegationFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

@@ -6,9 +6,9 @@ import {TelephoneFactory} from "src/levels/TelephoneFactory.sol";
 import {TelephoneAttack} from "src/attacks/TelephoneAttack.sol";
 
 contract TelephoneTest is Test {
-    TelephoneFactory public level;
-    address public target;
-    address public player;
+    TelephoneFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

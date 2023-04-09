@@ -12,7 +12,7 @@ interface IERC20 {
 }
 
 contract NaughtCoinAttack {
-    IERC20 public target;
+    IERC20 target;
 
     constructor(address _target) {
         target = IERC20(_target);

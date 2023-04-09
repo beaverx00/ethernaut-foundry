@@ -9,9 +9,9 @@ interface IPrivacy {
 }
 
 contract PrivacyTest is Test {
-    PrivacyFactory public level;
-    IPrivacy public target;
-    address public player;
+    PrivacyFactory level;
+    IPrivacy target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

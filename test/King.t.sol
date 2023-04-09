@@ -6,9 +6,9 @@ import {KingFactory} from "src/levels/KingFactory.sol";
 import {KingAttack} from "src/attacks/KingAttack.sol";
 
 contract KingTest is Test {
-    KingFactory public level;
-    address public target;
-    address public player;
+    KingFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

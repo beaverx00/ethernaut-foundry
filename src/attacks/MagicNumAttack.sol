@@ -6,7 +6,7 @@ interface IMagicNum {
 }
 
 contract MagicNumAttack {
-    IMagicNum public target;
+    IMagicNum target;
 
     constructor(address _target) {
         target = IMagicNum(_target);

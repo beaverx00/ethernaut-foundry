@@ -9,9 +9,9 @@ interface ISimpleToken {
 }
 
 contract RecoveryTest is Test {
-    RecoveryFactory public level;
-    address public target;
-    address public player;
+    RecoveryFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

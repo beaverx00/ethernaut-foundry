@@ -6,8 +6,8 @@ interface IElevator {
 }
 
 contract ElevatorAttack {
-    IElevator public target;
-    bool public executed;
+    IElevator target;
+    bool executed;
 
     constructor(address _target) {
         target = IElevator(_target);

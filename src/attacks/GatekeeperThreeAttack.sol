@@ -12,7 +12,7 @@ interface IGatekeeperThree {
 }
 
 contract GatekeeperThreeAttack {
-    IGatekeeperThree public target;
+    IGatekeeperThree target;
 
     constructor(address _target) {
         target = IGatekeeperThree(_target);

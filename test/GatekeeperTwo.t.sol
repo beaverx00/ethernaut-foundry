@@ -6,9 +6,9 @@ import {GatekeeperTwoFactory} from "src/levels/GatekeeperTwoFactory.sol";
 import {GatekeeperTwoAttack} from "src/attacks/GatekeeperTwoAttack.sol";
 
 contract GatekeeperTwoTest is Test {
-    GatekeeperTwoFactory public level;
-    address public target;
-    address public player;
+    GatekeeperTwoFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

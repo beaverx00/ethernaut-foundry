@@ -13,9 +13,9 @@ interface IToken {
 }
 
 contract TokenTest is Test {
-    TokenFactory public level;
-    IToken public target;
-    address public player;
+    TokenFactory level;
+    IToken target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

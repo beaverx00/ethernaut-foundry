@@ -6,9 +6,9 @@ import {ShopFactory} from "src/levels/ShopFactory.sol";
 import {ShopAttack} from "src/attacks/ShopAttack.sol";
 
 contract ShopTest is Test {
-    ShopFactory public level;
-    address public target;
-    address public player;
+    ShopFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

@@ -6,7 +6,7 @@ interface ITelephone {
 }
 
 contract TelephoneAttack {
-    ITelephone public target;
+    ITelephone target;
 
     constructor(address _target) {
         target = ITelephone(_target);

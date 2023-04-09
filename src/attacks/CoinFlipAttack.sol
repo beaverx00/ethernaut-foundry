@@ -6,8 +6,8 @@ interface ICoinFlip {
 }
 
 contract CoinFlipAttack {
-    ICoinFlip public target;
-    uint256 public FACTOR =
+    ICoinFlip target;
+    uint256 FACTOR =
         57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
     constructor(address _target) {

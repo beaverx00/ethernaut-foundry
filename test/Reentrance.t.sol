@@ -8,9 +8,9 @@ import {ReentranceFactory} from "src/levels/ReentranceFactory.sol";
 import {ReentranceAttack} from "src/attacks/ReentranceAttack.sol";
 
 contract ReentranceTest is Test {
-    ReentranceFactory public level;
-    address public target;
-    address public player;
+    ReentranceFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

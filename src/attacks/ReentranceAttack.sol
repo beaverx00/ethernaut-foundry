@@ -8,7 +8,7 @@ interface IReentrance {
 }
 
 contract ReentranceAttack {
-    IReentrance public target;
+    IReentrance target;
 
     constructor(address _target) public {
         target = IReentrance(_target);

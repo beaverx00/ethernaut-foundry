@@ -6,9 +6,9 @@ interface IPreservation {
 }
 
 contract PreservationAttack {
-    IPreservation public target;
-    uint256 public slotOne;
-    address public owner;
+    IPreservation target;
+    uint256 slotOne;
+    address owner;
 
     constructor(address _target) {
         target = IPreservation(_target);

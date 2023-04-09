@@ -10,9 +10,9 @@ interface IFallout {
 
 contract FalloutTest is Test {
     // Ethernaut public ethernaut;
-    FalloutFactory public level;
-    IFallout public target;
-    address public player;
+    FalloutFactory level;
+    IFallout target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

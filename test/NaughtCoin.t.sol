@@ -12,9 +12,9 @@ interface IERC20 {
 }
 
 contract NaughtCoinTest is Test {
-    NaughtCoinFactory public level;
-    IERC20 public target;
-    address public player;
+    NaughtCoinFactory level;
+    IERC20 target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

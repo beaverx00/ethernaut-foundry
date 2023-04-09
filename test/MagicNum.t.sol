@@ -6,9 +6,9 @@ import {MagicNumFactory} from "src/levels/MagicNumFactory.sol";
 import {MagicNumAttack} from "src/attacks/MagicNumAttack.sol";
 
 contract MagicNumTest is Test {
-    MagicNumFactory public level;
-    address public target;
-    address public player;
+    MagicNumFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

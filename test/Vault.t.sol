@@ -9,9 +9,9 @@ interface IVault {
 }
 
 contract VaultTest is Test {
-    VaultFactory public level;
-    IVault public target;
-    address public player;
+    VaultFactory level;
+    IVault target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

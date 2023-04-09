@@ -6,9 +6,9 @@ import {ForceFactory} from "src/levels/ForceFactory.sol";
 import {ForceAttack} from "src/attacks/ForceAttack.sol";
 
 contract ForceTest is Test {
-    ForceFactory public level;
-    address public target;
-    address public player;
+    ForceFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

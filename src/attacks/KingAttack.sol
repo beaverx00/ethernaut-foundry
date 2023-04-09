@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract KingAttack {
-    address public target;
+    address target;
 
     constructor(address _target) {
         target = _target;

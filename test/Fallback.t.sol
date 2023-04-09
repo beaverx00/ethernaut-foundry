@@ -11,9 +11,9 @@ interface IFallback {
 }
 
 contract FallbackTest is Test {
-    FallbackFactory public level;
-    IFallback public target;
-    address public player;
+    FallbackFactory level;
+    IFallback target;
+    address player;
 
     function setUp() public {
         // ----------------------------------

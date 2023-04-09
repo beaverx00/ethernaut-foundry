@@ -6,9 +6,9 @@ import {PreservationFactory} from "src/levels/PreservationFactory.sol";
 import {PreservationAttack} from "src/attacks/PreservationAttack.sol";
 
 contract PreservationTest is Test {
-    PreservationFactory public level;
-    address public target;
-    address public player;
+    PreservationFactory level;
+    address target;
+    address player;
 
     function setUp() public {
         // ----------------------------------
