@@ -56,7 +56,7 @@ contract AlienCodexTest is Test {
             uint256(keccak256(abi.encodePacked(uint256(1)))) +
             1;
         IAlienCodex(target).revise(index, bytes32(uint256(uint160(player))));
-        IAlienCodex(target).owner();
+
         vm.stopPrank();
 
         // ----------------------------------
