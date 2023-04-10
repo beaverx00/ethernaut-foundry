@@ -51,7 +51,7 @@ contract AlienCodexTest is Test {
          */
         IAlienCodex(target).retract();
 
-        //
+        // codex[0] stored at slot keccak256(1), codex[1] at slot keccak256(1)+1 and so on.
         uint256 index = type(uint256).max -
             uint256(keccak256(abi.encodePacked(uint256(1)))) +
             1;
