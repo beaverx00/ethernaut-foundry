@@ -103,7 +103,7 @@ You can check emiited logs and stack traces during test. Further information, se
 15. [Naught Coin](test/NaughtCoin.t.sol)
 16. [Preservation](test/Preservation.t.sol)
 17. [Recovery](test/Recovery.t.sol)
-18. [MagicNumber](test/MagicNumber.t.sol)
+18. [MagicNumber](test/MagicNum.t.sol)
 19. [Alien Codex](test/AlienCodex.t.sol)
 20. [Denial](test/Denial.t.sol)
 21. [Shop](test/Shop.t.sol)
