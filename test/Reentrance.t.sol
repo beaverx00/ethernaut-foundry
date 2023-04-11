@@ -29,7 +29,7 @@ contract ReentranceTest is Test {
         vm.startPrank(player);
 
         ReentranceAttack reentranceAttack = new ReentranceAttack(target);
-        reentranceAttack.pwn{value: 0.0001234 ether}();
+        reentranceAttack.pwn{value: 0.0003 ether}();
 
         vm.stopPrank();
 
