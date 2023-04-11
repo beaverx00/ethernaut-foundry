@@ -20,7 +20,7 @@
 
 ![Product Name Screen Shot](img/demo.png)
 
-This is a Foundry's forge-based Ethernaut challenge solution. The code is written using the [Forge Standard Library](https://github.com/foundry-rs/forge-std) and you can test and validate the attack transactions as you wish.
+This is a Foundry's forge-based Ethernaut challenge solution. The code is written using the [Forge Standard Library](https://github.com/foundry-rs/forge-std) and you can test and validate the attack transactions.
 
 
 
