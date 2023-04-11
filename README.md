@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://ethernaut.openzeppelin.com/">
-    <img src="img/ethernaut.svg?raw=true&sanitize=true" alt="Logo">
+    <img src="https://ethernaut.openzeppelin.com/imgs/BigLevel0.svg" alt="Logo">
   </a>
   <h3 align="center">ethernaut-foundry</h3>
 
