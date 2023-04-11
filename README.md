@@ -24,7 +24,7 @@ This is a Foundry's forge-based Ethernaut challenge solution. The code is writte
 
 
 
-### Notes
+### ❗Notes
 
 Since each challenge has a different solidity version, instead of deploying the ethernaut contract, implemented it by creating and validating challenge instances directly through each challenge factory contract. The following two challenges have exceptions:
 
