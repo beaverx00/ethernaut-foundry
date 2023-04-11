@@ -26,12 +26,12 @@ This is a Foundry's forge-based Ethernaut challenge solution. The code is writte
 
 ### Notes
 
-Since each challenge has a different solidity version, instead of deploying the ethernaut contract, we implemented it by creating and validating challenge instances directly through each challenge factory contract. The following two challenges have exceptions:
+Since each challenge has a different solidity version, instead of deploying the ethernaut contract, implemented it by creating and validating challenge instances directly through each challenge factory contract. The following two challenges have exceptions:
 
 - [AlienCodex](test/AlienCodex.t.sol)
   <details>
     <summary>Spoiler warning</summary>
-      Since this challenge does not compile in solidity version 0.6 or later, I loaded the bytecode compiled in version 0.5 directly into memory and created an instance using the create opcode.
+      Since this challenge does not compile in solidity version 0.6 or later, loaded the bytecode compiled in version 0.5 directly into memory and created an instance using the create opcode.
   </details>
 - [Motorbike](test/Motorbike.t.sol)
    <details>
@@ -74,7 +74,7 @@ Using the Reentrance challenge as an example, the `src` directory contains `Reen
 
 ### Usage
 
-All test contracts are named `<Challenge>Test` (for example, `ReentranceTest`) and the test function is named `test_Challenge()`(e.g. `test_Reentrance()`)
+All test contracts are named `<Challenge>Test` (for example, `ReentranceTest`) and the test function is named `test_<Challenge>()`(e.g. `test_Reentrance()`)
 
 If you want to test the `Reentrance`, you can do the following:
 
