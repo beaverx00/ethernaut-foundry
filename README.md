@@ -50,9 +50,15 @@ Before we get started, you'll need to install foundry.
 
 ```
 curl -L https://foundry.paradigm.xyz | bash
+foundryup
 ```
 
-Then, in a new terminal run: `foundryup`. Now you can use forge command-line tool!
+Then, run the following commands:
+```
+git clone https://github.com/beaverx00/ethernaut-foundry.git
+cd ethernaut-foundry
+forge install
+```
 
 ### Directory Structure
 ```
